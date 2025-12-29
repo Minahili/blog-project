@@ -1,10 +1,11 @@
+
+
+require("dotenv").config(); // load .env variables
+
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
-require("dotenv").config();
 
-const blogRoutes = require("./routes/blogRoutes");
-const { connect } = require("http2");
+const blogRoutes = require("./SRC/blog/blog.routes")
 
 const app = express();
 
@@ -13,8 +14,9 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
 app.use("/api/blogs", blogRoutes);
-connect.db
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
