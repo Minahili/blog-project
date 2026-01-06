@@ -1,18 +1,14 @@
-
-
-require("dotenv").config(); // load .env variables
+require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-
-const blogRoutes = require("./SRC/blog/blog.routes")
+const blogRoutes = require("./src/blog/blog.routes");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
-
 app.use("/api/blogs", blogRoutes);
 
 const PORT = process.env.PORT || 5000;
